@@ -19,7 +19,7 @@ public class Car {
     @Column(nullable = false)
     private int mileage;
     @Column
-    private User renterUser;
+    private Long renterUserId;
     @Column
     private Date rentStart;
     @Column Date rentEnd;
@@ -57,11 +57,11 @@ public class Car {
     public void setMileage(int mileage) {
         this.mileage = mileage;
     }
-    public User getRenterUser() {
-        return renterUser;
+    public Long getRenterUserId() {
+        return renterUserId;
     }
-    public void setRenterUser(User renterUser) {
-        this.renterUser = renterUser;
+    public void setRenterUserId(Long renterUserId) {
+        this.renterUserId = renterUserId;
     }
     public Date getRentStart() {
         return rentStart;
