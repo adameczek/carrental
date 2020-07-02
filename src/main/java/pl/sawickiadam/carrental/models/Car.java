@@ -1,13 +1,17 @@
 package pl.sawickiadam.carrental.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Cars")
+@Table(name = "Car")
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @Column(nullable = false)
@@ -18,13 +22,19 @@ public class Car {
     private String VIN;
     @Column(nullable = false)
     private int mileage;
-    @Column
-    private Long renterUserId;
-    @Column
-    private Date rentStart;
-    @Column Date rentEnd;
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
     public Car() {
+    }
+    public Car(String brand, String model, String VIN, int mileage, User user) {
+        this.brand = brand;
+        this.model = model;
+        this.VIN = VIN;
+        this.mileage = mileage;
+        this.user = user;
     }
 
     public Long getId() {
@@ -57,22 +67,12 @@ public class Car {
     public void setMileage(int mileage) {
         this.mileage = mileage;
     }
-    public Long getRenterUserId() {
-        return renterUserId;
+    @JsonManagedReference
+    public User getUser() {
+        return user;
     }
-    public void setRenterUserId(Long renterUserId) {
-        this.renterUserId = renterUserId;
+    public void setUser(User user) {
+        this.user = user;
     }
-    public Date getRentStart() {
-        return rentStart;
-    }
-    public void setRentStart(Date rentStart) {
-        this.rentStart = rentStart;
-    }
-    public Date getRentEnd() {
-        return rentEnd;
-    }
-    public void setRentEnd(Date rentEnd) {
-        this.rentEnd = rentEnd;
-    }
+
 }
