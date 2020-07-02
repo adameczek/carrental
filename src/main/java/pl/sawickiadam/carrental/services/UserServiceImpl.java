@@ -5,11 +5,17 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.sawickiadam.carrental.models.User;
 import pl.sawickiadam.carrental.repositories.UserRepository;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
+
+    @Override
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
     @Override
     public User getUserById(Long Id) throws ResourceNotFoundException {
         return userRepository.findById(Id).orElseThrow(() -> new ResourceNotFoundException());

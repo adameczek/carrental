@@ -33,4 +33,14 @@ public class CarServiceImpl implements CarService {
     public void deleteCar(Long Id) throws ResourceNotFoundException {
         carRepository.deleteById(Id);
     }
+
+    @Override
+    public List<Car> getRentedCars() {
+        return carRepository.findAllByUserNotNull();
+    }
+
+    @Override
+    public List<Car> getNotRentedCars() {
+        return carRepository.findAllByUserIsNull();
+    }
 }

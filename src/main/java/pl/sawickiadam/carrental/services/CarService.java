@@ -10,4 +10,6 @@ public interface CarService {
     public Car getCarById(Long Id) throws ResourceNotFoundException;
     public void saveCar(Car car);
     public void deleteCar(Long Id) throws ResourceNotFoundException;
+    public List<Car> getRentedCars();
+    public List<Car> getNotRentedCars();
 }
