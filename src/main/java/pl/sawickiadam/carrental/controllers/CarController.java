@@ -9,27 +9,26 @@ import pl.sawickiadam.carrental.services.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/carRental")
-public class CarRentalController {
+@RequestMapping("/cars")
+public class CarController {
     @Autowired
     CarService carService;
-    @Autowired
-    UserService userService;
 
-    @GetMapping("/cars")
-    public List<Car> findAll() {
+
+    @GetMapping()
+    public List<Car> getCars() {
         return carService.getCars();
     }
-    @GetMapping("/cars/{id}")
+    @GetMapping("/{id}")
     public Car findById(@PathVariable("id") Long id) {
         return carService.getCarById(id);
     }
-    @PostMapping("/cars")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody Car car) {
         carService.saveCar(car);
     }
-    @PutMapping("/cars/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable("id") Long id, @RequestBody Car car) {
         Car carToUpdate = carService.getCarById(id);
@@ -40,14 +39,20 @@ public class CarRentalController {
         if (carToUpdate.getVIN() != car.getVIN()) {
             carToUpdate.setVIN(car.getVIN());
         }
-        carToUpdate.setRenterUserId(car.getRenterUserId());
-        carToUpdate.setRentStart(car.getRentStart());
-        carToUpdate.setRentEnd(car.getRentEnd());
         carService.saveCar(carToUpdate);
     }
-    @DeleteMapping("/cars/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable("id") Long id) {
         carService.deleteCar(id);
+    }
+
+    @GetMapping("rented")
+    public List<Car> getRentedCars() {
+        return carService.getRentedCars();
+    }
+    @GetMapping("notRented")
+    public List<Car> getNotRentedCars() {
+        return carService.getNotRentedCars();
     }
 }
