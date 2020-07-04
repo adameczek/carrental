@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.sawickiadam.carrental.models.Car;
 import pl.sawickiadam.carrental.services.CarService;
-import pl.sawickiadam.carrental.services.UserService;
 
 import java.net.URI;
 import java.util.List;
@@ -45,7 +44,7 @@ public class CarController {
         carToUpdate.setBrand(car.getBrand());
         carToUpdate.setModel(car.getModel());
         carToUpdate.setMileage(car.getMileage());
-        if (carToUpdate.getVIN() != car.getVIN()) {
+        if (!carToUpdate.getVIN().equals(car.getVIN())) {
             carToUpdate.setVIN(car.getVIN());
         }
         carService.saveCar(carToUpdate);
