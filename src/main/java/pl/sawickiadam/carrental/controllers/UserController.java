@@ -13,7 +13,6 @@ import pl.sawickiadam.carrental.services.CarService;
 import pl.sawickiadam.carrental.services.UserService;
 
 import java.net.URI;
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @RestController

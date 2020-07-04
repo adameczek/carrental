@@ -60,4 +60,5 @@ public class CarController {
     public List<Car> getAvailableCars() {
         return carService.getAvailableCars();
     }
+
 }
