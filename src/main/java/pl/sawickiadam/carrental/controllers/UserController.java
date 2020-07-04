@@ -3,13 +3,16 @@ package pl.sawickiadam.carrental.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.sawickiadam.carrental.models.Car;
 import pl.sawickiadam.carrental.models.User;
 import pl.sawickiadam.carrental.services.CarService;
 import pl.sawickiadam.carrental.services.UserService;
 
+import java.net.URI;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 
@@ -29,14 +32,19 @@ public class UserController {
     public User findById(@PathVariable("id") Long id) {
         return userService.getUserById(id);
     }
-    @GetMapping("/email={email}")
+    @GetMapping("/email/{email}")
     public User findByEmail(@PathVariable("email") String email) {
         return userService.getUserByEmail(email);
     }
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody User user) {
-        userService.saveUser(user);
+    public ResponseEntity<Object> saveUSer(@RequestBody User user) {
+        User savedUser = userService.saveUser(user);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -51,6 +59,11 @@ public class UserController {
             }
         }
         userService.saveUser(userToUpdate);
+    }
+    @GetMapping("/{id}/car")
+    public Car getUserCar(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id);
+        return user.getCar();
     }
     @PutMapping("/{id}/rent/{carId}")
     @ResponseStatus(HttpStatus.OK)

@@ -2,10 +2,14 @@ package pl.sawickiadam.carrental.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.sawickiadam.carrental.models.Car;
 import pl.sawickiadam.carrental.services.CarService;
 import pl.sawickiadam.carrental.services.UserService;
+
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,15 +28,20 @@ public class CarController {
         return carService.getCarById(id);
     }
     @PostMapping("")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Car car) {
-        carService.saveCar(car);
+//    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Object> saveCar(@RequestBody Car car) {
+        Car savedCar = carService.saveCar(car);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                                                    .path("/{id}")
+                                                    .buildAndExpand(savedCar.getId())
+                                                    .toUri();
+        return ResponseEntity.created(location).build();
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable("id") Long id, @RequestBody Car car) {
         Car carToUpdate = carService.getCarById(id);
-        carToUpdate.setId(id);
+//        carToUpdate.setId(id);
         carToUpdate.setBrand(car.getBrand());
         carToUpdate.setModel(car.getModel());
         carToUpdate.setMileage(car.getMileage());
@@ -51,8 +60,8 @@ public class CarController {
     public List<Car> getRentedCars() {
         return carService.getRentedCars();
     }
-    @GetMapping("notRented")
-    public List<Car> getNotRentedCars() {
-        return carService.getNotRentedCars();
+    @GetMapping("available")
+    public List<Car> getAvailableCars() {
+        return carService.getAvailableCars();
     }
 }

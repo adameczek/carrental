@@ -25,8 +25,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void saveCar(Car car) {
-        carRepository.save(car);
+    public Car saveCar(Car car) {
+        return carRepository.save(car);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> getNotRentedCars() {
+    public List<Car> getAvailableCars() {
         return carRepository.findAllByUserIsNull();
     }
 }

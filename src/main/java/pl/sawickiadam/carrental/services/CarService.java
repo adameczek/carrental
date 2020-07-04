@@ -8,8 +8,8 @@ import java.util.List;
 public interface CarService {
     public List<Car> getCars();
     public Car getCarById(Long Id) throws ResourceNotFoundException;
-    public void saveCar(Car car);
+    public Car saveCar(Car car);
     public void deleteCar(Long Id) throws ResourceNotFoundException;
     public List<Car> getRentedCars();
-    public List<Car> getNotRentedCars();
+    public List<Car> getAvailableCars();
 }
