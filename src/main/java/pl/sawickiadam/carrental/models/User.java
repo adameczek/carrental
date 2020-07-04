@@ -2,8 +2,6 @@ package pl.sawickiadam.carrental.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
@@ -19,7 +17,7 @@ public class User {
     private String password;
     @Column(nullable = false, unique = true)
     private String email;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
     public User() {
@@ -28,6 +26,12 @@ public class User {
         this.name = name;
         this.password = password;
         this.email = email;
+    }
+    public User(String name, String password, String email, Car car) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.car = car;
     }
 
     public Long getId() {

@@ -6,9 +6,9 @@ import pl.sawickiadam.carrental.models.User;
 import java.util.List;
 
 public interface UserService {
-    public List<User> getAllUsers();
-    public User getUserById(Long Id) throws ResourceNotFoundException;
-    public User getUserByEmail(String email) throws ResourceNotFoundException;
-    public User saveUser(User user);
-    public void deleteUser(Long id) throws ResourceNotFoundException;
+    List<User> getAllUsers();
+    User getUserById(Long Id) throws ResourceNotFoundException;
+    User getUserByEmail(String email) throws ResourceNotFoundException;
+    User saveUser(User user);
+    void deleteUser(Long id) throws ResourceNotFoundException;
 }

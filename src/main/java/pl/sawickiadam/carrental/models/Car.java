@@ -1,11 +1,9 @@
 package pl.sawickiadam.carrental.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "Car")
@@ -22,12 +20,25 @@ public class Car {
     private String VIN;
     @Column(nullable = false)
     private int mileage;
-    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
 
     public Car() {
+    }
+    public Car(Long id, String brand, String model, String VIN, int mileage) {
+        this.Id = id;
+        this.brand = brand;
+        this.model = model;
+        this.VIN = VIN;
+        this.mileage = mileage;
+    }
+    public Car(String brand, String model, String VIN, int mileage) {
+        this.brand = brand;
+        this.model = model;
+        this.VIN = VIN;
+        this.mileage = mileage;
     }
     public Car(String brand, String model, String VIN, int mileage, User user) {
         this.brand = brand;
@@ -40,9 +51,9 @@ public class Car {
     public Long getId() {
         return Id;
     }
-    public void setId(Long Id) {
-        this.Id = Id;
-    }
+//    public void setId(Long Id) {
+//        this.Id = Id;
+//    }
     public String getBrand() {
         return brand;
     }

@@ -6,10 +6,10 @@ import pl.sawickiadam.carrental.models.Car;
 import java.util.List;
 
 public interface CarService {
-    public List<Car> getCars();
-    public Car getCarById(Long Id) throws ResourceNotFoundException;
-    public Car saveCar(Car car);
-    public void deleteCar(Long Id) throws ResourceNotFoundException;
-    public List<Car> getRentedCars();
-    public List<Car> getAvailableCars();
+    List<Car> getCars();
+    Car getCarById(Long Id) throws ResourceNotFoundException;
+    Car saveCar(Car car);
+    void deleteCar(Long Id) throws ResourceNotFoundException;
+    List<Car> getRentedCars();
+    List<Car> getAvailableCars();
 }
