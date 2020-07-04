@@ -48,17 +48,14 @@ public class UserController {
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable("id") Long id, @RequestBody User user) {
+    public User update(@PathVariable("id") Long id, @RequestBody User user) {
         User userToUpdate = userService.getUserById(id);
         userToUpdate.setId(id);
-        if (user.getName() != null) userToUpdate.setName(user.getName());
-        if (user.getPassword() != null) userToUpdate.setPassword(user.getPassword());
-        if (user.getEmail() != null) {
-            if (userToUpdate.getEmail() != user.getEmail()) {
-                userToUpdate.setEmail(user.getEmail());
-            }
-        }
-        userService.saveUser(userToUpdate);
+        userToUpdate.setName(user.getName());
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setEmail(user.getEmail());
+
+        return userService.saveUser(userToUpdate);
     }
     @GetMapping("/{id}/car")
     public Car getUserCar(@PathVariable("id") Long id) {

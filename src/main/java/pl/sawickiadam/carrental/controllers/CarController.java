@@ -38,16 +38,13 @@ public class CarController {
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable("id") Long id, @RequestBody Car car) {
+    public Car update(@PathVariable("id") Long id, @RequestBody Car car) {
         Car carToUpdate = carService.getCarById(id);
-//        carToUpdate.setId(id);
         carToUpdate.setBrand(car.getBrand());
         carToUpdate.setModel(car.getModel());
         carToUpdate.setMileage(car.getMileage());
-        if (!carToUpdate.getVIN().equals(car.getVIN())) {
-            carToUpdate.setVIN(car.getVIN());
-        }
-        carService.saveCar(carToUpdate);
+        carToUpdate.setVIN(car.getVIN());
+        return carService.saveCar(carToUpdate);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
