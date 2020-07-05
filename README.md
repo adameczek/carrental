@@ -1,7 +1,7 @@
 # carrental
 
 Stworzony z spring initializr. Korzysta z MySQL.
-Żeby aplikacja uruchomiła się poprawnie trzeba utworzyć użytkownika carRental z hasłem "haslo", oraz baze danych o nazwie carRentalDB.
+Żeby aplikacja uruchomiła się poprawnie trzeba utworzyć użytkownika carRental z hasłem "haslo", oraz baze danych o nazwie carRentalDB w MySQL.
 Zamiast tego można zmienić ustawienia bazy danych w application.properties.
 
 Działanie aplikacji:
