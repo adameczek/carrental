@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: pl.sawickiadam.carrental.CarControllerTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.048 s - in pl.sawickiadam.carrental.CarControllerTest

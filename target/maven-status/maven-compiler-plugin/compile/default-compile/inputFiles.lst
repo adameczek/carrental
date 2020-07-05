@@ -1,0 +1,12 @@
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/repositories/CarRepository.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/repositories/UserRepository.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/controllers/CarController.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/models/User.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/controllers/UserController.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/services/CarService.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/services/UserServiceImpl.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/models/Car.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/services/CarServiceImpl.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/controllers/InitController.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/CarrentalApplication.java
+/Users/adam/IdeaProjects/carrental/src/main/java/pl/sawickiadam/carrental/services/UserService.java
