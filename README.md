@@ -1,7 +1,6 @@
 # carrental
-Project for internship assignment
 
-Stworzony z spring initializr. Korzysta z MySQL
+Stworzony z spring initializr. Korzysta z MySQL.
 Żeby aplikacja uruchomiła się poprawnie trzeba utworzyć użytkownika carRental z hasłem "haslo", oraz baze danych o nazwie carRentalDB.
 Zamiast tego można zmienić ustawienia bazy danych w application.properties.
 
